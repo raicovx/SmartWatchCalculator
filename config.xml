@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://www.raicovdesigns.com.au/SmartWatchCalculator" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="OzrBW7Pdve.SmartWatchCalculator" package="OzrBW7Pdve" required_version="3.0"/>
+    <author href="www.raicovtechnologyservices.com.au" email="jamesc@raicovtechnologyservices.com.au">James Cranston</author>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icon.png"/>
+    <name>SmartWatchCalculator</name>
+    <tizen:profile name="wearable"/>
+</widget>

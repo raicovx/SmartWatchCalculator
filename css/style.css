@@ -1,0 +1,83 @@
+* {
+    font-family: Verdana, Lucida Sans, Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0 auto;
+    background-color:#222;
+}
+
+.contents {
+	display: flex;
+	display: -webkit-flex;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	height:320px;
+}
+
+
+.content_text {
+	font-weight:bold;
+	font-size:5em;
+	color:#fff;
+}
+
+/* Output Row */
+.output-row{
+	background:#444;
+	width:98%;
+	height:100px;
+	margin:0 auto;
+	position:relative;
+}
+#output-text{
+	width:50%;
+	margin:0 auto;
+	text-align:center;
+	color:#FFF;
+	font:17px Roboto, sans-serif;
+	padding:15px;
+}
+
+/* Number Column - Main Screen */
+.digit-col{
+	margin-left:5%;
+	margin-right:1%;
+	width:65%;
+	position:relative;
+}
+.btn{
+	color: #FFFFFF;
+    height: 50px;
+    width: 32%;
+    border: none;
+    margin: 0.5%;
+    font: 15px Roboto, sans-serif;
+    font-weight: 400;
+    border-radius:5px;
+}
+.number-btn{
+	background: #333333;
+    
+}
+.decimal-btn, .invert-btn, .clear-btn, .all-clear-btn, .operator-btn{
+	background:#ca0c0c;
+}
+
+.operator-col{
+	width:30%;
+}
+.active-operator{
+	background:#990c0c!important;
+}
+.operator-btn{
+	float:left;
+	margin:1%;
+	width:45%!important;
+	
+}
+.equals-btn{
+	width:98%!important;
+	background:#ca0c0c!important;
+	margin:0.5%
+}

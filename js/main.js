@@ -11,10 +11,13 @@ $(document).ready(function(){
 			}
        }
     });
+     
     var val;
     var operation = ""; //Determines which calculation occurs dynamically
     var output = $("#output-text");
     var secondInput = false; //Determines if this is the second input for the equation or not.
+    initialButtonCheck(); //Check for button order preferences
+    
     
     //Add eventListener for all button clicks
     $(".btn").on("click", function(){
@@ -99,7 +102,36 @@ $(document).ready(function(){
  		    		if(output.text().indexOf(".") == -1){
  		    			output.append(this.innerHTML);
  		    		}
-    			}else{
+                    
+                //SETTINGS BUTTONS
+                }else if($(this).hasClass("settings-btn")){
+                    //hide main screen
+                    $(".main-screen").fadeOut();
+                    $(".main-screen").css("visibility", "hidden")
+                    
+                    //populate settings
+                    refreshSettings();
+                    
+                    
+                     //show settings
+                    $(".settings-screen").css("visibility", "visible")
+                    $(".settings-screen").fadeIn();
+                   
+                }else if($(this).hasClass("settings-close-btn")){
+                    //hide settings
+                    $(".settings-screen").fadeOut();
+                    $(".settings-screen").css("visibility", "hidden")
+                    //show main screen
+                    $(".main-screen").css("visibility", "visible")
+                    $(".main-screen").fadeIn();
+                     
+                //Number Order Setting Buttons   
+                }else if($(this).hasClass("lowerTopBtn")){
+                    buttonSwitcher();
+                }else if($(this).hasClass("lowerBottomBtn")){
+                    buttonSwitcher();
+                   
+                }else{
     				//FINALLY, if it was none of the above buttons, just append the button value.
 		    	    output.append(this.innerHTML);
 		    	}
@@ -122,5 +154,48 @@ $(document).ready(function(){
     //There was an error, show toast/alert explaining why
     function errorMessage($log){
     	alert($log);
+    }
+    
+    //Button Setting Functions
+    
+    //Initial Setting Check
+    function initialButtonCheck(){
+        origBttn = localStorage.origBttn; 
+                if(origBttn == 'false'){
+                    $('.row#one, .row#three').remove();
+                   $('.row#two').append('<div class="row" id="three"><button class="number-btn btn">7</button><button class="number-btn btn">8</button><button class="number-btn btn">9</button></div>').prepend('<div class="row" id="one"><button class="number-btn btn">1</button><button class="number-btn btn">2</button><button class="number-btn btn">3</button></div>');
+              }        
+        if(!origBttn){
+           origBttn = localStorage.origBttn = 'true';
+        }
+    }
+    
+    //Apply Setting
+    function buttonSwitcher(){ 
+        origBttn = localStorage.origBttn; 
+        if(origBttn == 'false'){
+            $('.row#one, .row#three').remove();
+                  $('.row#two').prepend('<div class="row" id="three"><button class="number-btn btn">7</button><button class="number-btn btn">8</button><button class="number-btn btn">9</button></div>').append('<div class="row" id="one"><button class="number-btn btn">1</button><button class="number-btn btn">2</button><button class="number-btn btn">3</button></div>');
+              localStorage.origBttn = 'true';
+            
+        }else if(origBttn == 'true'){
+            $('.row#one, .row#three').remove();
+             $('.row#two').append('<div class="row" id="three"><button class="number-btn btn">7</button><button class="number-btn btn">8</button><button class="number-btn btn">9</button></div>').prepend('<div class="row" id="one"><button class="number-btn btn">1</button><button class="number-btn btn">2</button><button class="number-btn btn">3</button></div>');
+             localStorage.origBttn = 'false';
+        }else{
+            alert('using else??');
+            initialButtonCheck();
+        }
+         refreshSettings();
+    }
+    //Refresh settings ui
+    function refreshSettings(){
+        if(localStorage.origBttn == 'true'){
+            $(".lowerBottomBtn").removeClass("inactive-setting");                
+            $(".lowerTopBtn").addClass("inactive-setting");                
+        }else if(localStorage.origBttn == 'false'){
+            $(".lowerTopBtn").removeClass("inactive-setting");
+            $(".lowerBottomBtn").addClass("inactive-setting");
+        }
     }
 });
